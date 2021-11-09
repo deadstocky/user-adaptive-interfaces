@@ -1,3 +1,212 @@
+/* Custom properties: spacing */
+:root {
+	color-scheme: dark light;
+
+	--space-xxs: 0.25rem;
+	--space-xs: 0.5rem;
+	--space-sm: 1rem;
+	--space-md: 1.5rem;
+	--space-lg: 2rem;
+	--space-xl: 3rem;
+	--space-xxl: 6rem;
+
+	--hue: 200;
+	--saturation: 100%;
+	--lightness: 50%;
+
+	--brand: hsl(var(--hue) calc(var(--saturation) / 2) var(--lightness));
+	--text1: hsl(var(--hue) 15% 85%);
+	--text2: hsl(var(--hue) 15% 65%);
+
+	--surface1: hsl(var(--hue) 10% 10%);
+	--surface2: hsl(var(--hue) 10% 15%);
+	--surface3: hsl(var(--hue) 5% 20%);
+	--surface4: hsl(var(--hue) 5% 25%);
+}
+
+@media (prefers-color-scheme: light) {
+	:root {
+		--brand: hsl(var(--hue) var(--saturation) var(--lightness));
+		--text1: hsl(var(--hue) var(--saturation) 10%);
+		--text2: hsl(var(--hue) calc(var(--saturation) / 2) 30%);
+
+		--surface1: hsl(var(--hue) 20% 90%);
+		--surface2: hsl(var(--hue) 10% 99%);
+		--surface3: hsl(var(--hue) 10% 96%);
+		--surface4: hsl(var(--hue) 10% 85%);
+	}
+}
+
+/* Page styles */
+* {
+	box-sizing: border-box;
+	margin: 0;
+}
+
+html {
+	block-size: 100%;
+}
+
+body {
+	min-block-size: 100%;
+	padding-block-start: var(--space-xs);
+	padding-block-end: var(--space-xs);
+	font-family: system-ui, sans-serif;
+	background: var(--surface1);
+	color: var(--text1);
+}
+
+/* Typography */
+h1,
+h2,
+h3 {
+	font-weight: 500;
+}
+
+small {
+	line-height: 1.5;
+	color: var(--text2);
+}
+
 svg {
-  block-size: 2rem;
+	block-size: 2rem;
+}
+
+input {
+	outline-offset: 5px;
+}
+
+main {
+	display: -ms-grid;
+	display: grid;
+	gap: var(--space-xl);
+	place-content: center;
+	padding: var(--space-sm);
+}
+
+form {
+	max-inline-size: 89vw;
+	display: grid;
+	gap: var(--space-xl) var(--space-xxl);
+	align-items: flex-start;
+	grid-template-columns: repeat(auto-fit, minmax(min(10ch, 100%), 35ch));
+}
+
+section {
+	display: -ms-grid;
+	display: grid;
+	gap: var(--space-md);
+}
+
+fieldset {
+	padding: 0;
+	display: -ms-grid;
+	display: grid;
+	gap: 1px;
+	border-radius: var(--space-sm);
+	overflow: hidden;
+	border: 1px solid var(--surface4);
+	background: var(--surface4);
+	transition: box-shadow 0.3s ease;
+}
+
+fieldset:focus-within {
+	box-shadow: 0 5px 20px -10px hsl(0 0% 0% / 50%);
+}
+
+header {
+	display: -ms-grid;
+	display: grid;
+	gap: var(--space-xxs);
+}
+
+.fieldset-item {
+	display: -ms-grid;
+	display: grid;
+	grid-template-columns: var(--space-lg) 1fr;
+	gap: var(--space-md);
+	padding: var(--space-sm) var(--space-md);
+	background: var(--surface3);
+	transition: background 0.2s ease;
+}
+
+.fieldset-item:focus-within {
+	background: var(--surface2);
+}
+
+@media (min-width: 540px) {
+	.fieldset-item {
+		grid-template-columns: var(--space-xxl) 1fr;
+		gap: var(--space-xs);
+		padding-block: var(--space-md);
+		padding-inline: 0 var(--space-xl);
+	}
+}
+
+.fieldset-item > picture {
+	block-size: var(--space-xl);
+	inline-size: var(--space-xl);
+	clip-path: circle(50%);
+	display: -ms-inline-grid;
+	display: inline-grid;
+	place-content: center;
+	background: var(--surface4);
+}
+
+.fieldset-item > :is(picture, input[type='checkbox']) {
+	place-self: center;
+}
+
+.fieldset-item svg {
+	block-size: var(--space-md);
+	fill: var(--text2);
+}
+
+.fieldset-item:focus-within svg {
+	fill: var(--brand);
+}
+
+.sm-stack {
+	display: -ms-grid;
+	display: grid;
+	gap: var(--space-xs);
+}
+
+input[type='checkbox'] {
+	inline-size: var(--space-sm);
+	block-size: var(--space-sm);
+}
+
+@media (min-width: 540px) {
+	main {
+		padding: var(--space-lg);
+	}
+}
+
+@media (min-width: 800px) {
+	main {
+		padding: var(--space-xl);
+	}
+}
+
+form {
+	--repeat: auto-fit;
+	grid-template-columns: repeat(var(--repeat), minmax(min(10ch, 100%), 35ch));
+}
+
+@media (orientation: landscape) and (min-width: 640px) {
+	form {
+		--repeat: 2;
+	}
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.fieldset-item > picture {
+		clip-path: circle(40%);
+		transition: clip-path 0.3s ease;
+	}
+
+	.fieldset-item:focus-within picture {
+		clip-path: circle(50%);
+	}
 }
