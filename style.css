@@ -79,15 +79,6 @@ input {
 
 input[type='range'] {
 	accent-color: var(--brand);
-	--track-height: 0.5ex;
-	--track-fill: 0%;
-	--thumb-size: 3ex;
-	--thumb-offset: -1.25ex;
-	--thumb-highlight-size: 0px;
-
-	display: block;
-	inline-size: 100%;
-	margin: 1ex 0;
 }
 
 input[type='checkbox'] {
