@@ -15,6 +15,9 @@
 	--lightness: 50%;
 
 	--brand: hsl(var(--hue) calc(var(--saturation) / 2) var(--lightness));
+	--brand-bg1: hsl(var(--hue), 100%, 72.9%);
+	--brand-bg2: hsl(266.8, 100%, 73.3%);
+
 	--text1: hsl(var(--hue) 15% 85%);
 	--text2: hsl(var(--hue) 15% 65%);
 
@@ -22,6 +25,9 @@
 	--surface2: hsl(var(--hue) 10% 15%);
 	--surface3: hsl(var(--hue) 5% 20%);
 	--surface4: hsl(var(--hue) 5% 25%);
+
+	--thumb-highlight-color: lch(100 0 0 / 20%);
+	--brand-bg-gradient: linear-gradient(to bottom, var(--brand-bg1), var(--brand-bg2));
 }
 
 @media (prefers-color-scheme: light) {
@@ -34,6 +40,8 @@
 		--surface2: hsl(var(--hue) 10% 99%);
 		--surface3: hsl(var(--hue) 10% 96%);
 		--surface4: hsl(var(--hue) 10% 85%);
+
+		--thumb-highlight-color: lch(0 0 0 / 20%);
 	}
 }
 
@@ -78,7 +86,91 @@ input {
 }
 
 input[type='range'] {
+	--track-height: 0.5ex;
+	--track-fill: 0%;
+	--thumb-size: 3ex;
+	--thumb-offset: -1.25ex;
+	--thumb-highlight-size: 0px;
+
 	accent-color: var(--brand);
+
+	display: block;
+	inline-size: 100%;
+	margin: 1ex 0;
+	appearance: none;
+	background: transparent;
+	outline-offset: 5px;
+
+	@media (hover: none) {
+		& {
+			--thumb-size: 30px;
+			--thumb-offset: -14px;
+		}
+	}
+
+	&::-webkit-slider-runnable-track {
+		appearance: none;
+		block-size: var(--track-height);
+		border-radius: 5ex;
+		background: linear-gradient(to right, transparent var(--track-fill), var(--surface1) 0%),
+			var(--brand-bg-gradient) fixed;
+	}
+
+	&::-moz-range-track {
+		appearance: none;
+		block-size: var(--track-height);
+		border-radius: 5ex;
+		background: linear-gradient(to right, transparent var(--track-fill), var(--surface1) 0%),
+			var(--brand-bg-gradient) fixed;
+	}
+
+	&::-webkit-slider-thumb {
+		appearance: none;
+		cursor: ew-resize;
+		border: 3px solid var(--surface3);
+		block-size: var(--thumb-size);
+		inline-size: var(--thumb-size);
+		margin-block-start: var(--thumb-offset);
+		border-radius: 50%;
+		background: var(--brand-bg-gradient) fixed;
+		box-shadow: 0 0 0 var(--thumb-highlight-size) var(--thumb-highlight-color);
+
+		@media (--motionOK) {
+			& {
+				transition: box-shadow 0.1s ease;
+			}
+		}
+
+		@nest .fieldset-item:focus-within & {
+			border-color: var(--surface2);
+		}
+	}
+
+	&::-moz-range-thumb {
+		appearance: none;
+		cursor: ew-resize;
+		border: 3px solid var(--surface3);
+		block-size: var(--thumb-size);
+		inline-size: var(--thumb-size);
+		margin-block-start: var(--thumb-offset);
+		border-radius: 50%;
+		background: var(--brand-bg-gradient) fixed;
+		box-shadow: 0 0 0 var(--thumb-highlight-size) var(--thumb-highlight-color);
+
+		@media (--motionOK) {
+			& {
+				transition: box-shadow 0.1s ease;
+			}
+		}
+
+		@nest .fieldset-item:focus-within & {
+			border-color: var(--surface2);
+		}
+	}
+
+	&:is(:hover, :active) {
+		--thumb-highlight-size: 10px;
+	}
 }
 
 input[type='checkbox'] {
