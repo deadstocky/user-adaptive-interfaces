@@ -1,19 +1,21 @@
 {
-  "name": "vite-preset-env",
-  "author": "Adam Argyle",
-  "license": "ISC",
-  "version": "0.0.0",
-  "browserslist": [
-    "defaults"
-  ],
-  "scripts": {
-    "start": "vite",
-    "dev": "vite",
-    "build": "vite build",
-    "serve": "vite preview"
-  },
-  "dependencies": {},
-  "devDependencies": {
-    "vite": "2.x  || >2.0.0-alpha"
-  }
+	"name": "vite-preset-env",
+	"author": "Adam Argyle",
+	"license": "ISC",
+	"version": "0.0.0",
+	"browserslist": [
+		"defaults"
+	],
+	"scripts": {
+		"start": "vite",
+		"dev": "vite",
+		"build": "vite build",
+		"serve": "vite preview"
+	},
+	"devDependencies": {
+		"autoprefixer": "^10.4.0",
+		"postcss": "^8.3.11",
+		"postcss-nested": "^5.0.6",
+		"vite": "2.x  || >2.0.0-alpha"
+	}
 }

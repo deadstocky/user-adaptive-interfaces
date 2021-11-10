@@ -10,7 +10,7 @@
 	--space-xl: 3rem;
 	--space-xxl: 6rem;
 
-	--hue: 200;
+	--hue: 210;
 	--saturation: 100%;
 	--lightness: 50%;
 
@@ -74,6 +74,26 @@ svg {
 
 input {
 	outline-offset: 5px;
+	inline-size: 100%;
+}
+
+input[type='range'] {
+	accent-color: var(--brand);
+	--track-height: 0.5ex;
+	--track-fill: 0%;
+	--thumb-size: 3ex;
+	--thumb-offset: -1.25ex;
+	--thumb-highlight-size: 0px;
+
+	display: block;
+	inline-size: 100%;
+	margin: 1ex 0;
+}
+
+input[type='checkbox'] {
+	accent-color: var(--brand);
+	inline-size: var(--space-sm);
+	block-size: var(--space-sm);
 }
 
 main {
@@ -86,6 +106,7 @@ main {
 
 form {
 	max-inline-size: 89vw;
+	display: -ms-grid;
 	display: grid;
 	gap: var(--space-xl) var(--space-xxl);
 	align-items: flex-start;
@@ -170,11 +191,6 @@ header {
 	display: -ms-grid;
 	display: grid;
 	gap: var(--space-xs);
-}
-
-input[type='checkbox'] {
-	inline-size: var(--space-sm);
-	block-size: var(--space-sm);
 }
 
 @media (min-width: 540px) {
